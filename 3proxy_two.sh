@@ -11,7 +11,7 @@ case "$1" in
    start)
        echo Starting 3Proxy_two
 
-       /usr/local/etc/3proxy/bin/3proxy_two /usr/local/etc/3proxy/3proxy_two.cfg
+       /usr/local/etc/3proxy/bin/3proxy /usr/local/etc/3proxy/3proxy_two.cfg
 
        RETVAL=$?
        echo
@@ -20,10 +20,10 @@ case "$1" in
 
    stop)
        echo Stopping 3Proxy_two
-       if [ /usr/local/etc/3proxy/3proxy_two.pid ]; then
-	       /bin/kill `cat /usr/local/etc/3proxy/3proxy_two.pid`
+       if [ /usr/local/etc/3proxy/3proxy.pid ]; then
+	       /bin/kill `cat /usr/local/etc/3proxy/3proxy.pid`
        else
-               /usr/bin/killall 3proxy_two
+               /usr/bin/killall 3proxy
        fi
 
        RETVAL=$?
@@ -33,10 +33,10 @@ case "$1" in
 
    restart|reload)
        echo Reloading 3Proxy_two
-       if [ /usr/local/etc/3proxy/3proxy_two.pid ]; then
-	       /bin/kill -s USR1 `cat /usr/local/etc/3proxy/3proxy_two.pid`
+       if [ /usr/local/etc/3proxy/3proxy.pid ]; then
+	       /bin/kill -s USR1 `cat /usr/local/etc/3proxy/3proxy.pid`
        else
-               /usr/bin/killall -s USR1 3proxy_two
+               /usr/bin/killall -s USR1 3proxy
        fi
        ;;
 
